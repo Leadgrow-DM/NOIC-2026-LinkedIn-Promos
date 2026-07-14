@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIC 2026 — Speaker LinkedIn Promos</title>
+<style>
+  :root {
+    --navy:      #1A2744;
+    --navy-dark: #0F1A2E;
+    --gold:      #C49A2A;
+    --gold-light:#E8B84B;
+    --cream:     #F8F5EE;
+    --white:     #FFFFFF;
+    --gray:      #6B7280;
+    --border:    #D9C99A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Georgia', serif;
+    background: var(--cream);
+    color: #2C2C2C;
+  }
+
+  header {
+    background: var(--navy-dark);
+    padding: 48px 40px 36px;
+    text-align: center;
+    border-bottom: 4px solid var(--gold);
+  }
+
+  header .eyebrow {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  header h1 {
+    font-size: 30px;
+    color: var(--white);
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  header h1 span { color: var(--gold); }
+
+  header .subtitle {
+    font-family: 'Arial', sans-serif;
+    font-size: 13px;
+    color: #A0AAB8;
+    margin-bottom: 20px;
+  }
+
+  header .meta-bar {
+    display: inline-block;
+    background: rgba(196,154,42,0.15);
+    border: 1px solid var(--gold);
+    padding: 8px 24px;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: var(--gold-light);
+    letter-spacing: 1px;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 50px 20px 80px;
+  }
+
+  .section-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .speaker-card {
+    background: var(--white);
+    border-top: 3px solid var(--gold);
+    margin-bottom: 44px;
+    padding: 32px 36px 28px;
+    box-shadow: 0 2px 12px rgba(26,39,68,0.07);
+    page-break-inside: avoid;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+
+  .speaker-num {
+    font-family: 'Arial', sans-serif;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid var(--border);
+  }
+
+  .speaker-name {
+    font-size: 24px;
+    color: var(--navy);
+    font-weight: bold;
+    margin-top: 14px;
+    margin-bottom: 2px;
+    letter-spacing: 0.3px;
+  }
+
+  .speaker-role {
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    color: var(--gray);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .tagline {
+    font-size: 19px;
+    font-style: italic;
+    color: var(--navy-dark);
+    background: linear-gradient(135deg, #f9f5ea 0%, #f3edd6 100%);
+    border-left: 4px solid var(--gold);
+    padding: 14px 20px;
+    margin-bottom: 22px;
+    line-height: 1.4;
+    font-weight: bold;
+  }
+
+  .post-label {
+    font-family: 'Arial', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .post-body {
+    font-size: 14px;
+    line-height: 1.85;
+    color: #333;
+    white-space: pre-line;
+  }
+
+  .post-body p {
+    margin-bottom: 12px;
+  }
+
+  .cta-block {
+    margin-top: 22px;
+    background: var(--navy);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cta-text {
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: var(--white);
+    line-height: 1.5;
+  }
+
+  .cta-text strong {
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .hashtags {
+    margin-top: 14px;
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: var(--navy);
+    line-height: 1.7;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 50px 0;
+    opacity: 0.5;
+  }
+
+  footer {
+    background: var(--navy-dark);
+    border-top: 3px solid var(--gold);
+    padding: 30px 40px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 11px;
+    color: #6B7A8D;
+  }
+
+  footer span { color: var(--gold); }
+
+  @media print {
+    .speaker-card { box-shadow: none; border: 1px solid #ccc; }
+    header { background: var(--navy-dark) !important; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Speaker Spotlight Series</div>
+  <h1>New Orleans <span>Investment Conference</span></h1>
+  <div class="subtitle">October 28–31, 2026 · New Orleans, Louisiana · neworleansconference.com</div>
+  <div class="meta-bar">38 SPEAKERS · LINKEDIN CONTENT LIBRARY · READY TO POST</div>
+</header>
+
+<div class="container">
+  <div class="section-label">Speaker LinkedIn Promos — 2026 Lineup</div>
+
+
+  <!-- 1 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 01</span></div>
+    <div class="speaker-name">Grant Williams</div>
+    <div class="speaker-role">Author, Things That Make You Go Hmmm · Co-Founder, Real Vision</div>
+    <div class="tagline">"When Everyone Agrees, Someone's Wrong."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Grant Williams doesn't follow consensus. He dismantles it.
+
+As the author of the legendary macro research letter "Things That Make You Go Hmmm" and co-founder of Real Vision Finance, Grant has spent decades asking the questions that make comfortable investors deeply uncomfortable.
+
+His gift is pattern recognition — spotting the macro shifts that Wall Street doesn't want to discuss until after they've already cost you money.
+
+He doesn't need to be loud. The implications of what he finds are loud enough.
+
+We're proud to have Grant Williams joining us in New Orleans this October. If you want to understand what the crowd is missing right now, this is the session you clear your schedule for.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #MacroInvesting #GrantWilliams #HardAssets #NOIC2026</div>
+  </div>
+
+
+  <!-- 2 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 02</span></div>
+    <div class="speaker-name">Doug Casey</div>
+    <div class="speaker-role">Founder, Casey Research · Author, Crisis Investing</div>
+    <div class="tagline">"The World's Most Dangerous Economist — and the Most Useful One You'll Ever Hear."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Doug Casey has been called a lot of things. He wears most of them as badges of honor.
+
+Anarcho-capitalist philosopher. International speculator. Author of Crisis Investing. One of the most fearless voices in finance for five decades — and still the one people pass around when they want an unfiltered view of where the world is actually headed.
+
+Doug doesn't just challenge the system. He questions whether the system deserves to exist at all.
+
+For serious investors who want clarity over comfort, Doug Casey is required listening. And this October in New Orleans, he'll say the things polite financial media won't.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #DougCasey #SoundMoney #GoldInvesting #NOIC2026</div>
+  </div>
+
+
+  <!-- 3 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 03</span></div>
+    <div class="speaker-name">Danielle DiMartino Booth</div>
+    <div class="speaker-role">Founder & CEO, QI Research · Author, Fed Up</div>
+    <div class="tagline">"She Worked Inside the Fed. Now She Tells the Truth."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Most economists study the Federal Reserve from the outside. Danielle DiMartino Booth worked inside it — and what she saw disturbed her enough to write one of the most revealing books ever published about American monetary policy.
+
+As founder of QI Research, she translates Fed decisions into plain language — cutting through the jargon to reveal what interest rate moves, balance sheet management, and central bank politics actually mean for your portfolio.
+
+She's not a cheerleader. She's a whistleblower with a Bloomberg terminal and a track record.
+
+Danielle DiMartino Booth joins us this October in New Orleans. If you want the Fed decoded by someone who was in the room, this is the session.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #FederalReserve #MonetaryPolicy #DiMartinoBooth #NOIC2026</div>
+  </div>
+
+
+  <!-- 4 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 04</span></div>
+    <div class="speaker-name">Michael Green</div>
+    <div class="speaker-role">Chief Strategist, Simplify Asset Management</div>
+    <div class="tagline">"Passive Investing Is Breaking the Markets. Most Investors Don't Know It Yet."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Here's a question Wall Street doesn't want you asking: What happens when trillions of dollars stop caring about price?
+
+Michael Green has spent years studying the structural consequences of the passive investing explosion — and the picture is not reassuring. As index fund dominance has grown, the mechanism that actually sets prices has been quietly compromised.
+
+As Chief Strategist at Simplify Asset Management, Michael brings rigorous flows-based analysis to one of the most important — and most ignored — structural risks in modern markets.
+
+If you own index funds, you owe it to yourself to hear what he's found. He'll be making the case in New Orleans this October.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #MarketStructure #PassiveInvesting #MichaelGreen #NOIC2026</div>
+  </div>
+
+
+  <!-- 5 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 05</span></div>
+    <div class="speaker-name">Brent Johnson</div>
+    <div class="speaker-role">CEO, Santiago Capital · Creator, Dollar Milkshake Theory</div>
+    <div class="tagline">"The Dollar Will Break the World Before It Breaks Itself."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Most gold investors are waiting for the dollar to collapse. Brent Johnson thinks they have the sequence exactly backwards.
+
+The creator of the Dollar Milkshake Theory argues that the dollar's structural dominance in global debt markets means it could surge sharply before it ultimately fails — crushing emerging markets and commodities along the way, and catching most alternative investors off guard.
+
+It's a thesis that challenges both the gold bull and the dollar bear. It demands that you think in systems, not in slogans.
+
+Brent Johnson will bring his full framework to the New Orleans Investment Conference this October. If you've built a position around dollar weakness, you need to hear this first.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #DollarMilkshake #BrentJohnson #MacroInvesting #NOIC2026</div>
+  </div>
+
+
+  <!-- 6 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 06</span></div>
+    <div class="speaker-name">Dominic Frisby</div>
+    <div class="speaker-role">Author · Bitcoin: The Future of Money · Daylight Robbery · Life After the State</div>
+    <div class="tagline">"He Made Monetary History Funny. That's When It Became Terrifying."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Dominic Frisby is a financial author, comedian, and Bitcoin pioneer — and that combination is more dangerous than it sounds.
+
+His books on Bitcoin, the history of taxation, and life beyond the state have earned him a following that spans the gold world, the crypto world, and anyone who suspects the monetary system is a long-running confidence trick.
+
+His gift is clarity delivered with wit — he makes you laugh at the absurdity right before you realize you should be furious. The ideas hit harder because they come in clean.
+
+Dominic Frisby joins us in New Orleans this October. Expect to be entertained. Expect to be unsettled. Expect to leave with a sharper view of money than you arrived with.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #DominicFrisby #Bitcoin #SoundMoney #MonetaryHistory #NOIC2026</div>
+  </div>
+
+
+  <!-- 7 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 07</span></div>
+    <div class="speaker-name">Peter Boockvar</div>
+    <div class="speaker-role">Chief Investment Officer, Bleakley Financial Group</div>
+    <div class="tagline">"The Bond Market Is Talking. Most Investors Aren't Listening."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Before the crowd sees a major market shift, the bond market usually already knows. Peter Boockvar reads it like a doctor reads an X-ray — and he's rarely wrong about what it means.
+
+As Chief Investment Officer of Bleakley Financial Group, Peter is one of the most respected macro analysts in the business — tracking inflation dynamics, credit conditions, and Fed policy with the precision that only comes from decades of close attention.
+
+At a moment when the inflation debate won't stay settled and central bank credibility continues to fray, his read on the fixed income market is exactly the signal serious investors need.
+
+Peter Boockvar joins us in New Orleans this October. The bond market is sending a message. He'll help you understand it.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #BondMarket #Inflation #PeterBoockvar #MacroInvesting #NOIC2026</div>
+  </div>
+
+
+  <!-- 8 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 08</span></div>
+    <div class="speaker-name">Jim Iuorio</div>
+    <div class="speaker-role">Veteran Futures Trader · CNBC Contributor</div>
+    <div class="tagline">"When the Pits Go Quiet, He Gets Louder. There's a Reason for That."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Jim Iuorio grew up in the trading pits — and that floor instinct never left him.
+
+As a veteran futures trader and CNBC commentator, Jim brings a real-money, real-time perspective on commodities, interest rates, and market structure that you simply cannot get from someone who's only ever traded from a model.
+
+He's fast, direct, and has zero patience for analysis that sounds sophisticated but can't survive contact with an actual trade. If you want to know what the commodity markets are actually doing — not what they should be doing in theory — Jim Iuorio is your source.
+
+He'll be in New Orleans this October. Come with your real questions.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #Commodities #FuturesTrading #JimIuorio #NOIC2026</div>
+  </div>
+
+
+  <!-- 9 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 09</span></div>
+    <div class="speaker-name">Peter Schiff</div>
+    <div class="speaker-role">CEO, Euro Pacific Capital · Host, The Peter Schiff Show</div>
+    <div class="tagline">"He Called the 2008 Crash on Live Television. He's Not Done Warning You."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Peter Schiff was laughed off CNBC in 2006 when he said the housing market was going to collapse.
+
+Then it did.
+
+For over three decades, Peter has made the case for hard money, the inevitability of dollar decline, and the enduring value of gold — not as a fringe theory, but as a mathematical certainty in a world that keeps borrowing its way forward.
+
+CEO of Euro Pacific Capital and host of one of the most widely followed financial podcasts in the world, Peter's conviction hasn't softened. If anything, the intervening years have only sharpened it.
+
+He'll be in New Orleans this October. The debt hasn't gotten smaller. The warning hasn't gotten quieter.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #PeterSchiff #Gold #Dollar #AustrianEconomics #NOIC2026</div>
+  </div>
+
+
+  <!-- 10 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 10</span></div>
+    <div class="speaker-name">Adrian Day</div>
+    <div class="speaker-role">President, Adrian Day Asset Management</div>
+    <div class="tagline">"The Quiet Contrarian Who Finds Value Where No One's Looking."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Adrian Day doesn't need to be loud. His returns speak clearly enough.
+
+As founder and president of Adrian Day Asset Management, Adrian has spent decades as a global value investor with a specialty in resource equities — finding undervalued companies in overlooked markets before the rest of the world figures out they're there.
+
+His approach is disciplined, patient, and deeply researched. Exactly the opposite of what passes for analysis in most financial media.
+
+In a room full of bold predictions, Adrian Day is the investor who's already positioned. He'll be joining us in New Orleans this October — and the conversation will be worth your full attention.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #AdrianDay #ResourceInvesting #ValueInvesting #NOIC2026</div>
+  </div>
+
+
+  <!-- 11 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 11</span></div>
+    <div class="speaker-name">Tavi Costa</div>
+    <div class="speaker-role">Macro Strategist, Crescat Capital</div>
+    <div class="tagline">"The Data Behind the Gold Thesis That's Hard to Argue With."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">The case for precious metals doesn't have to be emotional. When it's built right, it's just math. Tavi Costa builds it right.
+
+As a macro strategist at Crescat Capital, Tavi has assembled one of the most rigorous, data-dense bullish cases for gold and silver in the industry — drawing on monetary history, debt cycle analysis, and commodity valuations to construct an argument that doesn't require fear or politics to hold together.
+
+It holds together because the numbers do.
+
+Tavi Costa joins us in New Orleans this October. If you want the intellectual framework behind the precious metals thesis — the real one, not the headlines — this is the session.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #TaviCosta #PreciousMetals #MacroResearch #NOIC2026</div>
+  </div>
+
+
+  <!-- 12 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 12</span></div>
+    <div class="speaker-name">George Gammon</div>
+    <div class="speaker-role">Founder, Rebel Capitalist · Macro Educator</div>
+    <div class="tagline">"He Explains What Your Banker Hopes You Never Learn."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Most people have no idea how money actually works. Not really. George Gammon is fixing that — one whiteboard at a time.
+
+Through his wildly popular Rebel Capitalist platform, George has become one of the most effective financial educators alive — making Eurodollars, repo markets, monetary plumbing, and central bank mechanics genuinely understandable to anyone willing to pay attention.
+
+This isn't optional knowledge anymore. The decisions made in these markets directly affect your purchasing power, your savings, and your financial future — whether you're watching or not.
+
+George Gammon joins us in New Orleans this October. Come ready to learn things you probably should have been taught years ago.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #GeorgeGamemon #MonetaryPolicy #Eurodollars #NOIC2026</div>
+  </div>
+
+
+  <!-- 13 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 13</span></div>
+    <div class="speaker-name">Russell Gray</div>
+    <div class="speaker-role">Co-Host, The Real Estate Guys Radio Show</div>
+    <div class="tagline">"Your Portfolio Isn't Diversified If It's All Paper."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">In an era of financial repression and currency debasement, real assets aren't just an alternative — they're an imperative.
+
+Russell Gray, co-host of the Real Estate Guys Radio Show, has spent years helping investors build durable wealth through tangible, income-producing assets — with a particular focus on real estate as an inflation hedge that doesn't require you to predict what central banks will do next.
+
+The conversation he brings to the New Orleans Investment Conference isn't about getting rich quick. It's about building wealth that holds in a world where the purchasing power of cash is a slow-moving target.
+
+Russell Gray joins us in New Orleans this October. Real assets deserve a seat at the serious investor's table.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #RealEstate #RealAssets #InflationHedge #RussellGray #NOIC2026</div>
+  </div>
+
+
+  <!-- 14 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 14</span></div>
+    <div class="speaker-name">Robert Helms</div>
+    <div class="speaker-role">Co-Host, The Real Estate Guys Radio Show · Real Estate Developer</div>
+    <div class="tagline">"Real Estate Is the Oldest Inflation Hedge in History. Most Investors Still Underestimate It."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">While investors debate gold versus Bitcoin versus bonds, Robert Helms has been quietly building — and helping thousands of others build — real, tangible wealth through real estate.
+
+Co-host of the Real Estate Guys Radio Show and a successful real estate developer himself, Robert brings decades of hands-on experience to the alternative assets conversation. Not theory. Execution.
+
+His message is simple and durable: in a world of monetary uncertainty, owning something real — something that produces income, holds value, and can't be printed — isn't a strategy for the fringe. It's a foundation.
+
+Robert Helms joins us in New Orleans this October. Hard assets come in more forms than most conferences acknowledge.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #RealEstate #HardAssets #RobertHelms #NOIC2026</div>
+  </div>
+
+
+  <!-- 15 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 15</span></div>
+    <div class="speaker-name">Porter Stansberry</div>
+    <div class="speaker-role">Founder, Stansberry Research</div>
+    <div class="tagline">"They Called Him Controversial. His Subscribers Called Him Right."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Porter Stansberry built one of the most influential independent financial research firms in America — and he did it by publishing what the mainstream financial press wouldn't touch.
+
+The debt trajectory. The dollar's long-term fate. The consequences of financial engineering at a scale history has never seen before.
+
+Some of his calls were early. Most of them proved correct. And none of them came with the comfortable hedging that makes bad analysis feel safe.
+
+Porter Stansberry returns to New Orleans this October. In a financial environment this consequential, independent thinking isn't a luxury. It's a requirement.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #PorterStansberry #IndependentResearch #FinancialFreedom #NOIC2026</div>
+  </div>
+
+
+  <!-- 16 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 16</span></div>
+    <div class="speaker-name">Adam Taggart</div>
+    <div class="speaker-role">Founder, Wealthion · Co-Founder, Peak Prosperity</div>
+    <div class="tagline">"When Smart Money Gets Nervous, He's Already Interviewing It."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Adam Taggart has built something rare in financial media: a platform that takes the ideas seriously.
+
+As founder of Wealthion, Adam has spent years bringing the most rigorous, data-driven voices in finance to the investors who need to hear them most — people navigating a world that often seems designed to work against them.
+
+His gift is synthesis. He pulls together macro, monetary, and investment threads into a picture that's coherent, useful, and honest about the risks. In an era when most financial content is noise, that's worth a great deal.
+
+Adam Taggart joins us in New Orleans this October. The conversation he'll bring reflects what serious investors across the spectrum are actually worried about right now.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #AdamTaggart #Wealthion #MacroInvesting #NOIC2026</div>
+  </div>
+
+
+  <!-- 17 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 17</span></div>
+    <div class="speaker-name">Brien Lundin</div>
+    <div class="speaker-role">Editor, Gold Newsletter · Founder, New Orleans Investment Conference</div>
+    <div class="tagline">"Five Decades of Knowing Where the Gold Is Going."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">There are conference organizers. And then there are students of the market who've spent nearly five decades tracking gold, junior mining, and hard assets — and built an entire community of serious investors around that depth of knowledge.
+
+Brien Lundin is the latter.
+
+Editor of Gold Newsletter — one of the longest-running investment publications in the United States — and the founder of this conference, Brien doesn't just curate the conversation. He has been shaping it for longer than most people in this industry have been investing.
+
+When Brien speaks, the room listens. Because he's earned it the only way that counts: consistently, over decades, in a market that punishes everyone who gets complacent.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #BrienLundin #GoldNewsletter #PreciousMetals #NOIC2026</div>
+  </div>
+
+
+  <!-- 18 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 18</span></div>
+    <div class="speaker-name">Mark Skousen</div>
+    <div class="speaker-role">Economist · Author · Founder, FreedomFest</div>
+    <div class="tagline">"Austrian Economics Isn't a Fringe Theory. It's a Roadmap for What's Coming."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Mark Skousen has been teaching, writing, and living the case for free markets and sound money for over four decades — and the more the world drifts toward intervention, the more valuable his work becomes.
+
+Author of "The Making of Modern Economics," editor of Forecasts & Strategies, and founder of FreedomFest, Mark brings genuine intellectual depth and infectious enthusiasm to a set of ideas that mainstream economics has largely abandoned: that free markets work, that sound money matters, and that liberty and prosperity are not separable.
+
+In a world where those ideas are under pressure from every direction, hearing him make the case is both educational and genuinely energizing.
+
+Mark Skousen joins us in New Orleans this October.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #MarkSkousen #AustrianEconomics #FreeMarkets #NOIC2026</div>
+  </div>
+
+
+  <!-- 19 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 19</span></div>
+    <div class="speaker-name">Frank Giustra</div>
+    <div class="speaker-role">Mining Financier · Philanthropist · Co-Founder, Lionsgate Films</div>
+    <div class="tagline">"He Built a Mining Empire Before Mining Was Cool Again."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Frank Giustra doesn't invest in trends. He identifies them before they become trends — and builds accordingly.
+
+One of the world's most successful mining financiers, Frank has a record of spotting resource opportunities at precisely the moment before they become obvious to everyone else. He co-founded Lionsgate Films. He built what became Wheaton Precious Metals. He operates at the highest intersection of capital, geopolitics, and natural resources with a clarity that few can match.
+
+What Frank Giustra has to say about where we are in the commodity supercycle is not speculative commentary. It's informed by a career of making consequential bets — and getting them right.
+
+He joins us in New Orleans this October. This is a conversation you'll reference for years.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #FrankGiustra #Mining #CommoditySuperCycle #NOIC2026</div>
+  </div>
+
+
+  <!-- 20 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 20</span></div>
+    <div class="speaker-name">Bob Prechter</div>
+    <div class="speaker-role">Founder, Elliott Wave International · Author, The Socionomic Theory of Finance</div>
+    <div class="tagline">"Markets Don't React to the News. The News Reacts to Markets."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Robert Prechter has spent five decades refining a framework that challenges almost everything mainstream finance believes about how markets work.
+
+His theory of Socionomics argues that social mood drives events — not the other way around. That markets lead the news cycle. That the crowd's collective psychology is not a response to the world, but a prediction of it.
+
+It's a framework that requires intellectual courage to accept. It upends comfortable assumptions about causation, rationality, and the role of central banks. And once it lands, you genuinely cannot read financial headlines the same way again.
+
+Robert Prechter returns to New Orleans this October. Come ready to question assumptions you didn't know you were making.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #BobPrechter #ElliottWave #Socionomics #MarketPsychology #NOIC2026</div>
+  </div>
+
+
+  <!-- 21 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 21</span></div>
+    <div class="speaker-name">Dave Collum</div>
+    <div class="speaker-role">Professor of Chemistry, Cornell University · Author, Year in Review</div>
+    <div class="tagline">"A Chemist Walked Into Finance. Finance Hasn't Recovered."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Dave Collum is a professor of organic chemistry at Cornell University. Every year, he also writes the most devastating annual review of finance, economics, and geopolitics that you've never seen published in any mainstream outlet.
+
+His "Year in Review" is merciless, deeply sourced, often hilarious, and passed around serious investment circles like contraband. His conference appearances are the same.
+
+What makes Dave different isn't just the precision of his thinking. It's that he has nothing to protect. He's not managing your money. He's not selling a newsletter. He's a scientist applying rigor to a field that doesn't always welcome it.
+
+Dave Collum joins us in New Orleans this October. Come expecting intellectual honesty without a filter.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #DaveCollum #MacroAnalysis #ContraryOpinion #NOIC2026</div>
+  </div>
+
+
+  <!-- 22 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 22</span></div>
+    <div class="speaker-name">Nick Hodge</div>
+    <div class="speaker-role">Publisher, Digest Publishing · Resource Investor</div>
+    <div class="tagline">"Junior Mining Isn't Gambling — Unless You're Doing It Without Research."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Nick Hodge has built a career on finding the resource companies worth owning before the market figures it out.
+
+As a publisher and active investor in the junior mining and resource sector, Nick brings hard-won expertise to a market that punishes naivety and rewards depth of research. He knows the difference between a geological story and a real deposit. Between a management team that can execute and one that can pitch.
+
+In a junior mining market that's heating up alongside commodity prices, that distinction is the difference between a life-changing return and an expensive lesson.
+
+Nick Hodge joins us in New Orleans this October. The sector is moving. Intelligence matters more than ever right now.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #NickHodge #JuniorMining #ResourceInvesting #NOIC2026</div>
+  </div>
+
+
+  <!-- 23 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 23</span></div>
+    <div class="speaker-name">Don Durrett</div>
+    <div class="speaker-role">Gold Mining Analyst · Author, How to Invest in Gold &amp; Silver</div>
+    <div class="tagline">"Gold Is the Story. Mining Companies Are the Leverage. Know the Difference."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Don Durrett doesn't approach gold mining as a speculator. He approaches it as an analyst — and the sector needs more of exactly that.
+
+Author of "How to Invest in Gold & Silver" and a rigorous student of mining company fundamentals, Don has built frameworks for evaluating producers and developers that go well beyond the promotional narrative: cost structures, reserve quality, jurisdiction risk, management track records, and valuation metrics that survive scrutiny.
+
+As gold prices climb and miner valuations begin to reflect that, knowing which companies to own has never mattered more.
+
+Don Durrett joins us in New Orleans this October. The leverage is real. So is the risk of owning the wrong names.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #DonDurrett #GoldMining #PreciousMetals #NOIC2026</div>
+  </div>
+
+
+  <!-- 24 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 24</span></div>
+    <div class="speaker-name">Brent Cook</div>
+    <div class="speaker-role">Editor, Exploration Insights · Former Mineral Exploration Geologist</div>
+    <div class="tagline">"Not All Gold In the Ground Is Worth Mining. He Knows Exactly the Difference."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Geology is the discipline that separates a real gold deposit from a compelling story. Brent Cook is one of the very few analysts who brings genuine geological expertise to junior mining investment.
+
+Editor of Exploration Insights and a former mineral exploration geologist who has evaluated hundreds of projects in the field, Brent assesses junior mining companies from the ground up — literally. He knows what a real deposit looks like. He knows what promoters are hoping you won't notice.
+
+In a sector that runs on narrative and often outpaces the underlying science, Brent Cook is a necessary corrective.
+
+He joins us in New Orleans this October. If junior miners are in your portfolio, his perspective is non-negotiable.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #BrentCook #JuniorMining #GoldExploration #NOIC2026</div>
+  </div>
+
+
+  <!-- 25 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 25</span></div>
+    <div class="speaker-name">Lobo Tiggre</div>
+    <div class="speaker-role">Founder, The Independent Speculator</div>
+    <div class="tagline">"He Goes Where the Returns Are. Not Where the Crowds Are."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Lobo Tiggre built his reputation by going early on the uranium thesis when almost no one else in the resource world was paying attention.
+
+Then the thesis played out.
+
+As founder of The Independent Speculator, Lobo has spent years combining rigorous research with genuine intellectual independence — following the data wherever it leads, even when that means being early, being lonely for a while, and ultimately being right.
+
+His willingness to take contrarian positions backed by real work is precisely what separates informed speculation from optimistic gambling. The resource sector rewards the former. It destroys the latter.
+
+Lobo Tiggre joins us in New Orleans this October. He'll tell you where the independent thinking is pointing right now.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #LoboTiggre #Uranium #ResourceSpeculation #NOIC2026</div>
+  </div>
+
+
+  <!-- 26 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 26</span></div>
+    <div class="speaker-name">Jeff Clark</div>
+    <div class="speaker-role">Senior Precious Metals Analyst</div>
+    <div class="tagline">"Conviction Without Timing Is an Expensive Virtue."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Most investors understand why they should own precious metals. Far fewer understand when, in what form, and at what size.
+
+Jeff Clark has spent decades focused on exactly those questions — bringing a tactical, practical lens to the precious metals space that complements the macro arguments without replacing them.
+
+His work helps investors move beyond the thesis and into the position: navigating volatility, managing exposure, and making decisions that survive real market conditions.
+
+Jeff Clark joins us in New Orleans this October. Conviction is a starting point. Strategy is what you build on top of it.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #JeffClark #PreciousMetals #Gold #Silver #NOIC2026</div>
+  </div>
+
+
+  <!-- 27 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 27</span></div>
+    <div class="speaker-name">Jeff Phillips</div>
+    <div class="speaker-role">President, Global Market Development · Resource Sector Investor</div>
+    <div class="tagline">"The Best Resource Deals Don't Make Headlines. They Make Fortunes."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">The most valuable opportunities in the resource sector rarely arrive with a press release. By the time they're widely known, they've already moved.
+
+Jeff Phillips understands this better than most. As a veteran of the junior mining and resource investment world, Jeff has spent years building the relationships, deal flow, and intelligence network that give serious investors visibility into opportunities before they become obvious — and before the crowd has priced them in.
+
+His judgment about companies, management teams, and market cycles comes from decades of watching what actually works — and what doesn't, despite looking good on a slide deck.
+
+Jeff Phillips joins us in New Orleans this October.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #JeffPhillips #ResourceInvesting #JuniorMining #NOIC2026</div>
+  </div>
+
+
+  <!-- 28 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 28</span></div>
+    <div class="speaker-name">Albert Lu</div>
+    <div class="speaker-role">Managing Director, WB Wealth Management · Macro Commentator</div>
+    <div class="tagline">"Gold Isn't a Bet on Chaos. It's a Bet on Mathematics."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Albert Lu has spent years stripping the emotion and politics from the gold thesis — and what's left when you do that is remarkably clear.
+
+As a wealth manager and macro commentator, Albert makes the rational, numbers-based case for sound money and hard assets: what the debt levels actually imply, what monetary debasement actually means for purchasing power, and why the conclusion that gold belongs in a serious portfolio doesn't require fear or conspiracy to reach.
+
+It requires arithmetic. And the arithmetic is compelling.
+
+Albert Lu joins us in New Orleans this October. If you want the clean, logical version of the hard money argument, this is the session.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #AlbertLu #Gold #SoundMoney #MacroInvesting #NOIC2026</div>
+  </div>
+
+
+  <!-- 29 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 29</span></div>
+    <div class="speaker-name">Jennifer Shaigec</div>
+    <div class="speaker-role">Resource Sector Analyst &amp; Investor</div>
+    <div class="tagline">"The Resource Sector Needs More People Who Do the Work. She Does the Work."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">In a sector where promotional narrative frequently outruns the underlying research, Jennifer Shaigec represents a different standard.
+
+Her work in the resource investment space is built on diligence, on-the-ground company assessment, and the kind of analytical depth that separates investors who understand what they own from those who only understand the pitch.
+
+That distinction matters — a great deal — when the market turns and the stories that don't have the fundamentals beneath them start to unwind.
+
+Jennifer Shaigec joins us in New Orleans this October. She's the kind of voice this conference was built to platform.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #JenniferShaigec #ResourceInvesting #PreciousMetals #NOIC2026</div>
+  </div>
+
+
+  <!-- 30 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 30</span></div>
+    <div class="speaker-name">Chris Powell</div>
+    <div class="speaker-role">Secretary-Treasurer, Gold Anti-Trust Action Committee (GATA)</div>
+    <div class="tagline">"They Said the Gold Market Was Free. He Followed the Paper Trail."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Chris Powell has spent decades doing something most financial journalists won't: following the documentary evidence on gold market intervention to wherever it actually leads.
+
+As Secretary-Treasurer of the Gold Anti-Trust Action Committee (GATA), Chris has compiled an extensive record of government documents, central bank communications, and academic research suggesting that the gold price is actively managed by powerful institutions — not as a conspiracy theory, but as documented, verifiable fact.
+
+You don't have to agree with every conclusion to benefit from reviewing the evidence. And the evidence is substantial.
+
+Chris Powell joins us in New Orleans this October. The documentation speaks for itself.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #ChrisPowell #GATA #GoldMarket #CentralBanks #NOIC2026</div>
+  </div>
+
+
+  <!-- 31 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 31</span></div>
+    <div class="speaker-name">Kerry Stevenson</div>
+    <div class="speaker-role">Resource Sector Veteran</div>
+    <div class="tagline">"Multiple Commodity Cycles Teach You Things No Textbook Can."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Experience in the resource markets is genuinely irreplaceable. Kerry Stevenson has it in depth.
+
+Having navigated multiple full commodity cycles — the booms that attract everyone and the busts that separate the serious from the speculative — Kerry brings the kind of pattern recognition that only accumulates through decades of actual market participation.
+
+At a moment when the commodity cycle appears to be turning with conviction, and a new wave of investors is entering the resource space for the first time, the perspective of someone who's been through every phase of it has real and practical value.
+
+Kerry Stevenson joins us in New Orleans this October.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #ResourceInvesting #CommodityCycle #NOIC2026</div>
+  </div>
+
+
+  <!-- 32 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 32</span></div>
+    <div class="speaker-name">Dana Samuelson</div>
+    <div class="speaker-role">President, American Gold Exchange · Numismatic Expert</div>
+    <div class="tagline">"Owning Gold Is Easy. Owning the Right Gold Takes Someone Like Dana."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Most investors who decide to own gold stop thinking after the decision. Dana Samuelson is one of the few experts who can walk you through what comes next.
+
+As president of American Gold Exchange and a recognized authority in both bullion markets and numismatic coins, Dana brings a uniquely practical dimension to precious metals ownership — the differences in liquidity, portability, privacy, and value that actually matter when you're building a real, physical position.
+
+Not all gold is equal. The type you own, the form it takes, and where it's held can matter as much as the decision to own it in the first place.
+
+Dana Samuelson joins us in New Orleans this October. The details are worth understanding.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #DanaSamuelson #PhysicalGold #PreciousMetals #Bullion #NOIC2026</div>
+  </div>
+
+
+  <!-- 33 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 33</span></div>
+    <div class="speaker-name">Daniela Cambone</div>
+    <div class="speaker-role">Editor-at-Large &amp; Anchor, Stansberry Research</div>
+    <div class="tagline">"The Best Interviews in Finance Begin With the Questions Others Won't Ask."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Daniela Cambone has built a reputation as one of the most skilled interviewers in financial media — known for getting the real answer, not the rehearsed one.
+
+Through her platform at Stansberry Research, Daniela has sat across from the most important voices in precious metals, macro investing, and alternative finance — consistently drawing out insights that audiences couldn't get anywhere else. She doesn't let her guests hide behind talking points.
+
+Her presence at the New Orleans Investment Conference means that the conversations happening on our stage go deeper than they do anywhere else.
+
+Daniela Cambone joins us in New Orleans this October. Watch what happens when great minds meet great questions.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #DanielaCambone #PreciousMetals #FinanceMedia #NOIC2026</div>
+  </div>
+
+
+  <!-- 34 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 34</span></div>
+    <div class="speaker-name">Rich Checkan</div>
+    <div class="speaker-role">President &amp; COO, Asset Strategies International</div>
+    <div class="tagline">"The Conviction to Own Gold Is a Starting Point. Strategy Is What You Build After."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Rich Checkan has spent decades helping serious investors translate the decision to own precious metals into a strategy that actually protects wealth across multiple scenarios.
+
+As president of Asset Strategies International, Rich specializes in the practical architecture of hard asset ownership — international storage, diversification across metals and forms, wealth transfer structures, and the nuanced positioning decisions that separate a thoughtful hard asset allocation from a naive one.
+
+Most investors focus on whether to own gold. Rich focuses on how — and the how matters a great deal more than most people realize.
+
+Rich Checkan joins us in New Orleans this October. Your hard asset strategy deserves this level of precision.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #RichCheckan #AssetProtection #Gold #HardAssets #NOIC2026</div>
+  </div>
+
+
+  <!-- 35 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 35</span></div>
+    <div class="speaker-name">Gerardo Del Real</div>
+    <div class="speaker-role">Publisher, Resource Stock Digest &amp; Junior Miner Junky</div>
+    <div class="tagline">"The Junior Mining Market Has Landmines. He Knows Where They Are."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Gerardo Del Real has made the junior mining sector his specialty — and in a sector saturated with promoters, he's built a reputation on something rarer: saying what he actually thinks.
+
+As publisher of Resource Stock Digest and Junior Miner Junky, Gerardo brings specific, well-sourced intelligence to a market where bad information is extraordinarily expensive and good information is genuinely scarce.
+
+He's not managing your expectations. He's managing your downside risk by giving you a clear-eyed view of what the sector actually looks like beneath the pitch decks and press releases.
+
+Gerardo Del Real joins us in New Orleans this October. In a junior market that's moving, knowing which companies to avoid is as valuable as knowing which ones to own.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #GerardoDelReal #JuniorMining #ResourceStocks #NOIC2026</div>
+  </div>
+
+
+  <!-- 36 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 36</span></div>
+    <div class="speaker-name">Mary Anne &amp; Pamela Aden</div>
+    <div class="speaker-role">Co-Editors, The Aden Forecast · Precious Metals Analysts</div>
+    <div class="tagline">"Nearly 50 Years of Calling the Gold Market. The Aden Sisters Aren't Done."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Mary Anne and Pamela Aden have been publishing The Aden Forecast since 1978 — making them two of the longest-tenured and most consistently respected voices in the precious metals world.
+
+Their long-term technical and fundamental analysis of gold, silver, and global financial markets has guided investors through every full cycle of the past five decades: the 1980 peak, the 20-year bear market, the major bull run of the 2000s, and every inflection point since.
+
+That record isn't luck. It's a methodology, refined over time by an almost unmatched breadth of market experience.
+
+Mary Anne and Pamela Aden return to New Orleans this October. What the charts are showing them right now is a conversation worth making time for.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #AdenForecast #Gold #TechnicalAnalysis #PreciousMetals #NOIC2026</div>
+  </div>
+
+
+  <!-- 37 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 37</span></div>
+    <div class="speaker-name">Omar Ayales</div>
+    <div class="speaker-role">Editor, Gold Charts 'R' Us · Technical Analyst</div>
+    <div class="tagline">"The Charts Don't Lie. He Just Knows How to Read What They're Saying."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Omar Ayales built Gold Charts 'R' Us around a single, undervalued premise: rigorous technical analysis removes the emotion from hard decisions — and emotion is the most expensive mistake in the precious metals market.
+
+His work on gold and silver price patterns, cycle timing, and market structure gives investors a framework that's objective when the news is loud, disciplined when the market is volatile, and specific when most commentary is vague.
+
+In a precious metals bull market, knowing when to act is as important as knowing why.
+
+Omar Ayales joins us in New Orleans this October. The charts are saying something clear right now. He'll show you exactly what that is.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #OmarAyales #TechnicalAnalysis #Gold #PreciousMetals #NOIC2026</div>
+  </div>
+
+
+  <!-- 38 -->
+  <div class="speaker-card">
+    <div class="card-header"><span class="speaker-num">Speaker 38</span></div>
+    <div class="speaker-name">Steve Hochberg</div>
+    <div class="speaker-role">Chief Market Analyst, Elliott Wave International</div>
+    <div class="tagline">"The Wave Is Building. He Can See Exactly Where It Breaks."</div>
+    <div class="post-label">LinkedIn Post Copy</div>
+    <div class="post-body">Steve Hochberg has spent decades applying Elliott Wave analysis to live financial markets — and as Chief Market Analyst at Elliott Wave International, his timing calls have been some of the most specific and consequential in the field.
+
+Where most analysts describe what markets have done, Steve focuses on what the wave structure suggests they will do next — providing a map for anticipating turns before the consensus sees them coming.
+
+It's a framework that doesn't care about central bank statements, earnings beats, or geopolitical noise. It reads the market itself. And right now, the market is sending a very specific message.
+
+Steve Hochberg joins us in New Orleans this October. In markets this volatile, a structural map isn't a luxury. It's an edge.</div>
+    <div class="cta-block">
+      <div class="cta-text"><strong>New Orleans Investment Conference 2026</strong>October 28–31 · New Orleans, LA · neworleansconference.com</div>
+    </div>
+    <div class="hashtags">#NewOrleansInvestmentConference #SteveHochberg #ElliottWave #MarketAnalysis #NOIC2026</div>
+  </div>
+
+
+</div>
+
+<footer>
+  <p style="margin-bottom:8px;"><span>NEW ORLEANS INVESTMENT CONFERENCE 2026</span></p>
+  <p>October 28–31 · New Orleans, Louisiana · neworleansconference.com</p>
+  <p style="margin-top:12px;">38 Speakers · Content Library Prepared for LinkedIn Distribution</p>
+</footer>
+
+</body>
+</html>
